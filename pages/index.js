@@ -13,21 +13,19 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Link href="/Auth/Signup">Signup</Link>
-        <Link href="/Auth/Signin">Signin</Link>
+        <h1 className={styles.text_center} >Auth WebAPP</h1>
+        <p className={styles.text_center}>
+          This is a web application that uses the Ethereum blockchain to authenticate users.
+        </p>
+        <div className={styles.btns} >
+          <Link className={styles.btn} href="/Auth/Signup">Inscription</Link>
+          <Link className={styles.btn_bis} href="/Auth/Signin">Connexion</Link>
+
+        </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+        <p>Copright 2024 - Auth WebAPP</p>
       </footer>
     </div>
   )

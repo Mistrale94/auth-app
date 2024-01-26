@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Web3 from 'web3';
 import ContractABI from '../../build/contracts/Auth.json';
+import styles from '../../styles/Home.module.css'
+
 
 const Signin = () => {
     const [web3, setWeb3] = useState(null);
@@ -42,7 +44,7 @@ const Signin = () => {
 
         try {
             const isAuthSuccessful = await contract.methods.verifyUser(username, email, password).call();
-            
+
             if (isAuthSuccessful) {
                 localStorage.setItem('username', username);
                 localStorage.setItem('userEmail', email);
@@ -58,14 +60,36 @@ const Signin = () => {
     };
 
     return (
-        <div>
+        <div className={styles.container_btns}>
+            <h1>Connexion</h1>
+
             <form onSubmit={handleSignIn}>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                <button type="submit">Sign In</button>
+                <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Username"
+                    className={styles.inputField}
+                />
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    className={styles.inputField}
+                />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    className={styles.inputField}
+                />
+                <button type="submit" className={styles.btnSubmit}>Connexion</button>
             </form>
+            <p>Retourner à <a className={styles.link} href="/">L'accueil</a></p>
         </div>
+
     );
 };
 

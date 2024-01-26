@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Web3 from 'web3';
 import ContractABI from '../../build/contracts/Auth.json';
+import styles from '../../styles/Home.module.css'
+
 
 const Signup = () => {
     const [web3, setWeb3] = useState(null);
@@ -47,13 +49,16 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <div className={styles.container_btns}>
+            <h1>Inscription</h1>
             <form onSubmit={handleSignUp}>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                <button type="submit">Sign Up</button>
+                <input className={styles.inputField} type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+                <input className={styles.inputField} type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                <input className={styles.inputField} type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                <button className={styles.btnSubmit} type="submit">Inscription</button>
             </form>
+            <p>Retourner à <a className={styles.link} href="/">L'accueil</a></p>
+
         </div>
     );
 };
