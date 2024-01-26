@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Web3 from 'web3';
 import ContractABI from '../../build/contracts/Auth.json';
-import { useEffect } from 'react';
 
 const Signup = () => {
     const [web3, setWeb3] = useState(null);
@@ -15,7 +14,6 @@ const Signup = () => {
     useEffect(() => {
         const initWeb3 = async () => {
             if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
-                // Demander à l'utilisateur la permission d'accéder à MetaMask
                 await window.ethereum.request({ method: 'eth_requestAccounts' });
                 const web3 = new Web3(window.ethereum);
                 setWeb3(web3);
@@ -41,7 +39,7 @@ const Signup = () => {
             const accounts = await web3.eth.getAccounts();
             await contract.methods.createUser(username, email, password).send({ from: accounts[0] });
             alert('Inscription réussie. Redirection vers la page de connexion.');
-            router.push('/signin');
+            router.push('/Auth/Signin');
         } catch (error) {
             console.error("Erreur lors de l'inscription: ", error);
             alert("Erreur lors de l'inscription. Veuillez réessayer.");

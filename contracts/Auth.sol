@@ -27,17 +27,24 @@ contract Auth {
     }
 
     function verifyUser(
+        string memory _username,
         string memory _email,
         string memory _password
     ) public view returns (bool) {
         user memory u = usersList[_email];
+
+        // Vérifier si l'utilisateur existe et si le nom d'utilisateur correspond
         if (
-            keccak256(abi.encodePacked(u.password)) ==
-            keccak256(abi.encodePacked(_password))
+            bytes(u.email).length == 0 ||
+            keccak256(abi.encodePacked(u.username)) !=
+            keccak256(abi.encodePacked(_username))
         ) {
-            return true;
-        } else {
             return false;
         }
+
+        // Vérifier le mot de passe
+        return
+            keccak256(abi.encodePacked(u.password)) ==
+            keccak256(abi.encodePacked(_password));
     }
 }

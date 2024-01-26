@@ -41,12 +41,13 @@ const Signin = () => {
         }
 
         try {
-            // Remplacer 'verifyUser' par la fonction réelle de votre contrat
             const isAuthSuccessful = await contract.methods.verifyUser(username, email, password).call();
             
             if (isAuthSuccessful) {
+                localStorage.setItem('username', username);
                 localStorage.setItem('userEmail', email);
-                router.push('/home');
+                localStorage.setItem('userPassword', password);
+                router.push('/');
             } else {
                 alert('Identifiants incorrects');
             }
