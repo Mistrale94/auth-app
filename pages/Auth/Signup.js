@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Web3 from 'web3';
 import ContractABI from '../../build/contracts/Auth.json';
 import styles from '../../styles/Home.module.css'
-
+import Head from 'next/head'
 
 const Signup = () => {
     const [web3, setWeb3] = useState(null);
@@ -50,6 +50,9 @@ const Signup = () => {
 
     return (
         <div className={styles.container_btns}>
+            <Head>
+                <title>Auth WebAPP - Inscription</title>
+            </Head>
             <h1>Inscription</h1>
             <form onSubmit={handleSignUp}>
                 <input className={styles.inputField} type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
